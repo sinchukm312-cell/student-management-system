@@ -1,12 +1,12 @@
 resource "azurerm_resource_group" "rg" {
-  name     = "my-rg-1"
-  location = "centralindia"
+  name     = "student-devops-rg"   # ✅ MUST match existing state
+  location = var.location
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                = "myacr19devops123"
+  name                = "myacr19devops123"   # ✅ globally unique
   resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
+  location            = var.location
   sku                 = "Basic"
   admin_enabled       = true
 }
