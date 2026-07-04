@@ -6,5 +6,6 @@
 # Sensitive
 terraform.tfvars
 
-# Logs
+# Optional
+.terraform.lock.hcl
 crash.log
