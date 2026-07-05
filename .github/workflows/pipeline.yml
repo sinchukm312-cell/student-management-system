@@ -1,0 +1,47 @@
+name: DevOps Final Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Login to ACR
+      run: |
+        echo ${{ secrets.ACR_PASSWORD }} | docker login myacr19.azurecr.io \
+        -u ${{ secrets.ACR_USERNAME }} --password-stdin
+
+    - name: Build Docker Image
+      run: |
+        docker build -t myacr19.azurecr.io/myapp:latest .
+
+    - name: Push Image to ACR
+      run: |
+        docker push myacr19.azurecr.io/myapp:latest
+
+    - name: Deploy to VM FINAL
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: 20.196.138.196
+        username: azureuser
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          echo "🚀 Starting Deployment FINAL"
+
+          docker login myacr19.azurecr.io -u ${{ secrets.ACR_USERNAME }} -p ${{ secrets.ACR_PASSWORD }}
+
+          docker pull myacr19.azurecr.io/myapp:latest
+
+          docker stop myapp-container || true
+          docker rm myapp-container || true
+
+          docker run -d -p 80:5000 --name myapp-container myacr19.azurecr.io/myapp:latest
+
+          echo "✅ Deployment Completed FINAL"
