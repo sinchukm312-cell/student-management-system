@@ -7,5 +7,5 @@ output "acr_login_server" {
 }
 
 output "vm_public_ip" {
-  value = data.azurerm_linux_virtual_machine.vm.public_ip_address
+  value = azurerm_public_ip.publicip.ip_address
 }
