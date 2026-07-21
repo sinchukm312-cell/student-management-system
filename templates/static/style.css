@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* AI Backgrounds */
+.bg-login {
+    background: url('https://images.unsplash.com/photo-1639322537228-f710d846310a') no-repeat center/cover;
+}
+
+.bg-register {
+    background: url('https://images.unsplash.com/photo-1677442136019-21780ecad995') no-repeat center/cover;
+}
+
+.bg-dashboard {
+    background: url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0') no-repeat center/cover;
+}
+
+/* Glass UI */
+.glass-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 15px;
+    width: 300px;
+    text-align: center;
+    color: white;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background: #00c6ff;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0072ff;
+}
+
+.error {
+    color: red;
+}
